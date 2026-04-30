@@ -36,7 +36,7 @@ app.get("/api/messages", (req, res) => {
 });
 
 app.post("/api/messages", (req, res) => {
-  db.query("INSERT INTO messages (text) VALUES (?)",["Hello from MySQL"],
+  db.query("INSERT INTO messages (text) VALUES (?)",["Hello from MySQL..."],
     (err, result) => {
       if (err) {
         return res.status(500).json({ error: "Insert failed" });
