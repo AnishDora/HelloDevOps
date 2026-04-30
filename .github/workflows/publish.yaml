@@ -1,0 +1,40 @@
+name: Build & Push Images
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build backend image
+        run: |
+          docker build -t ghcr.io/anishdora/hellodevops-backend:qa ./server
+
+      - name: Push backend image
+        run: |
+          docker push ghcr.io/anishdora/hellodevops-backend:qa
+
+      - name: Build frontend image
+        run: |
+          docker build -t ghcr.io/anishdora/hellodevops-frontend:qa ./client
+
+      - name: Push frontend image
+        run: |
+          docker push ghcr.io/anishdora/hellodevops-frontend:qa
