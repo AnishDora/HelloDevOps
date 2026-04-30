@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div>
-      <h1>Hello from React</h1>
+      <h1>Hello from React QA</h1>
       <p>{message}</p>
       <button onClick={addMessage}>Add Message</button>
     </div>
