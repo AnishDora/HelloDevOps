@@ -7,7 +7,7 @@ function App() {
     fetch("/api/messages")
       .then((res) => res.json())
       .then((data) => setMessage(JSON.stringify(data)))
-      .catch(() => setMessage("API failed"));
+      .catch(() => setMessage("API failed."));
   };
 
   const addMessage = () => {
